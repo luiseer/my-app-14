@@ -1,9 +1,10 @@
 import React, {useEffect} from 'react';
 import axios from 'axios'
+import { useDispatch } from 'react-redux';
 
 const Shop = () => {
 
-
+const dispatch = useDispatch()
 
     useEffect(() => {
         axios('')

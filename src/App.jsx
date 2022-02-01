@@ -1,8 +1,10 @@
 import { useState } from 'react'
 import './App.css'
-import { HashRouter, Routes, Route } from 'react-router-dom'
+import { HashRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { Cart, Login, Product, Shop } from './pages'
 import ProtectedRoutes from './components/ProtectedRoutes'
+
+Navigate
 
 function App() {
   const [count, setCount] = useState(0)
