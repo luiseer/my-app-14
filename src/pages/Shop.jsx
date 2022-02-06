@@ -2,11 +2,13 @@ import React, { useEffect } from 'react';
 import axios from 'axios'
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { getConfig } from '../utils';
+import { getConfig } from '../utils'
 
 const Shop = () => {
 
     const navigate = useNavigate()
+
+  
 
     const logOut = () => {
         localStorage.setItem("token", "")
@@ -14,10 +16,9 @@ const Shop = () => {
     }
 
     useEffect(() => {
-        axios.get('https://ecommerce-exercise-backend.herokuapp.com/products/', getConfig())
+        axios.get(`https://ecommerce-exercise-backend.herokuapp.com/products/`, getConfig())
             .then(res => console.log(res.data))
     }, [])
-
 
     return (
         <div>

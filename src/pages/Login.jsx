@@ -17,7 +17,7 @@ const Login = () => {
                 navigate('/shop')
             })
             .catch(() => setLoginError("Credenciales incorrectas"));
-
+            
     }
 
     return (
@@ -48,10 +48,13 @@ const Login = () => {
                             required
                         />
                     </div>
-
-                    {loginError}
-
-                    <button className='bg-orange-100 rounded-md w-24 mt-2'>Log In</button>
+                    <div className='mt-2'>
+                        <p className='text-white bg-red-700'>{loginError}</p>
+                    </div>
+                    <div className='ml-20'>
+                         <button className='bg-orange-100 rounded-md w-24 mt-2'>Log In</button>
+                    </div>
+                   
                 </form>
             </div>
 
