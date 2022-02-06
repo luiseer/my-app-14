@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import './App.css'
+import '../src/index.css'
 import { HashRouter, Routes, Route, Navigate } from 'react-router-dom'
-import { Cart, Login, Product, Shop } from './pages'
+import { Cart, Login, Shop } from './pages'
 import ProtectedRoutes from './components/ProtectedRoutes'
 
 Navigate
@@ -13,11 +13,11 @@ function App() {
     <div className="App">
         <HashRouter>
           <Routes>
-            <Route path="/login" element={<Login />} />
+            <Route path="/login" element={<Login/>} />
             <Route element={<ProtectedRoutes/>}>
-              <Route path="/cart" element={<Cart />} />
-              <Route path="/product" element={<Product />} />
-              <Route path="/shop" element={<Shop />} />
+              <Route path="/shop" element={<Shop/>} />
+              {/* <Route path="/shop/:id" element={<Shop/>} /> */}
+              <Route path="/cart" element={<Cart/>} />
             </Route>
           </Routes>
         </HashRouter>

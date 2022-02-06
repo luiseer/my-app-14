@@ -14,7 +14,7 @@ const Login = () => {
             .post("https://ecommerce-exercise-backend.herokuapp.com/login/", data)
             .then((res) => {
                 localStorage.setItem('token', res.data.access)
-                navigate('/cart')
+                navigate('/shop')
             })
             .catch(() => setLoginError("Credenciales incorrectas"));
 
@@ -22,19 +22,39 @@ const Login = () => {
 
     return (
         <div>
-            <h1>Login</h1>
-            <form action="" onSubmit={handleSubmit(submit)}>
-                <div className="input-container">
-                    <label htmlFor="email">Email</label>
-                    <input {...register("email")} type="email" required />
-                </div>
-                <div className="input-container">
-                    <label htmlFor="password">Password</label>
-                    <input type="password" {...register("password")} required />
-                </div>
-                {loginError}
-                <button>Log In</button>
-            </form>
+
+            <div>
+                <h1 className='text-4xl'>Login</h1>
+            </div>
+
+            <div className='flex justify-center m-20'>
+
+                <form action="" onSubmit={handleSubmit(submit)}>
+                    <div className="input-container">
+                        <label htmlFor="email">Email</label>
+                        <input
+                            className='border-2 border-black ml-2'
+                            {...register("email")}
+                            type="email"
+                            required
+                        />
+                    </div>
+                    <div className="input-container">
+                        <label htmlFor="password">Password</label>
+                        <input
+                            className='border-2 border-black ml-2 mt-2'
+                            type="password"
+                            {...register("password")}
+                            required
+                        />
+                    </div>
+
+                    {loginError}
+
+                    <button className='bg-orange-100 rounded-md w-24 mt-2'>Log In</button>
+                </form>
+            </div>
+
         </div>
     );
 

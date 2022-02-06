@@ -1,1 +1,1 @@
-export { getConfig as default } from './getConfig'
+export { default as getConfig } from './getConfig';
