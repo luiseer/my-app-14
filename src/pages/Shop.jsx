@@ -1,29 +1,40 @@
 import React, { useEffect } from 'react';
 import axios from 'axios'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { getConfig } from '../utils'
+import { getProductsThunk } from '../redux/actions/main';
 
 const Shop = () => {
 
     const navigate = useNavigate()
-
-  
 
     const logOut = () => {
         localStorage.setItem("token", "")
         navigate("/login")
     }
 
+    const dispatch = useDispatch();
+
+    const productsList = useSelector(state => state.shopList)
+
+    console.log(productsList);
+
     useEffect(() => {
-        axios.get(`https://ecommerce-exercise-backend.herokuapp.com/products/`, getConfig())
-            .then(res => console.log(res.data))
-    }, [])
+        dispatch(getProductsThunk())
+    }, [dispatch])
 
     return (
         <div>
-            <h1>Shop</h1>
-            <button className='bg-orange-100 rounded-md w-24 mt-2' onClick={logOut}>Log out</button>
+            <header>
+                <h1>Shop</h1>
+                <button className='bg-orange-100 rounded-md w-24 mt-2' onClick={logOut}>Log out</button>
+            </header>
+            {
+                productsList.map(product => (
+                    <p key={product.id}>{product.name}</p>
+                ))
+            }
+
         </div>
     );
 };
