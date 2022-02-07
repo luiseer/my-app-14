@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, Link } from 'react-router-dom';
-import { filterCategorieThunk, getCategoriesThunk, getProductsThunk } from '../redux/actions/main';
+import { filterCategoryThunk, filterProductsThunk, getCategoriesThunk, getProductsThunk } from '../redux/actions/main';
 
 
 const Shop = () => {
@@ -12,7 +13,10 @@ const Shop = () => {
         localStorage.setItem("token", "")
         navigate("/login")
     }
+    
+    const [search, setSearch] = useState("")
 
+    
     const dispatch = useDispatch();
 
     const productsList = useSelector(state => state.shopList)
@@ -21,12 +25,17 @@ const Shop = () => {
     console.log(categories);
     console.log(productsList);
 
-    const filterCategorie = id  => dispatch(filterCategorieThunk(id))
+    const filterCategory = id  => dispatch(filterCategoryThunk(id))
 
     useEffect(() => {
         dispatch(getProductsThunk())
         dispatch(getCategoriesThunk())
     }, [dispatch])
+
+    const filterProducts = e =>{
+        e.preventDefault()
+        dispatch(filterProductsThunk(search))
+    }
 
     return (
         <div>
@@ -39,7 +48,7 @@ const Shop = () => {
                 {
                     categories.map(categorie => (
                         <button
-                            onClick={() => filterCategorie(categorie.id)} 
+                            onClick={() => filterCategory(categorie.id)} 
                             key={categorie.id}>
                                 {categorie.name}
                         </button>
@@ -47,6 +56,15 @@ const Shop = () => {
                 }
             </nav>
 
+            <form onSubmit={filterProducts}>
+                <button>Search</button>
+                <input
+                    onChange={e => setSearch(e.target.value)}
+                    value={search} 
+                    className= 'border border-black' 
+                    type="text" 
+                />
+            </form>
 
             <main>
                 {

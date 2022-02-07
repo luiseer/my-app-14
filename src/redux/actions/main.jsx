@@ -63,10 +63,20 @@ export const getCategoriesThunk = () => {
     }
 }
 
-export const filterCategorieThunk = id => {
+export const filterCategoryThunk = id => {
     return dispatch => {
         dispatch(setIsLoading(true))
         axios.get(`https://ecommerce-exercise-backend.herokuapp.com/products/?category=${id}`, getConfig())
+            .then(res => dispatch(setProductsList(res.data)))
+            .catch(error => console.log(error.response))
+            .finally(() => dispatch((setIsLoading(false))))
+    }
+}
+
+export const filterProductsThunk = product => {
+    return dispatch => {
+        dispatch(setIsLoading(true))
+        axios.get(`https://ecommerce-exercise-backend.herokuapp.com/products/?name__icontains=${product}`, getConfig())
             .then(res => dispatch(setProductsList(res.data)))
             .catch(error => console.log(error.response))
             .finally(() => dispatch((setIsLoading(false))))
