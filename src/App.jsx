@@ -4,6 +4,7 @@ import { Cart, Login, Shop } from './pages'
 import ProtectedRoutes from './components/ProtectedRoutes'
 import Products from './pages/Products'
 import { useSelector } from 'react-redux'
+import { LoadingScreen } from './components'
 
 
 
@@ -18,7 +19,7 @@ function App() {
       <HashRouter>
 
         {
-          isLoading && <h2>loading</h2>
+          isLoading && <LoadingScreen/>
         }
 
         <Routes>
