@@ -10,6 +10,7 @@ export const actions = {
     setProductsList: "SET_PRODUCTS_LIST",
     setProductDetail: "SET_PRODUCT_DETAIL",
     setIsLoading: "SET_IS_LOADING",
+    setCategories: "SET_CATEGORIES"
 }
 
 export const setProductsList = products => ({
@@ -17,20 +18,20 @@ export const setProductsList = products => ({
     payload: products
 });
 
-
 export const setProductDetail = products => ({
     type: actions.setProductDetail,
     payload: products
 });
 
+export const setCategories = categories => ({
+    type: actions.setCategories,
+    payload: categories
+})
 
 export const setIsLoading = isLoading => ({
     type: actions.setIsLoading,
     payload: isLoading
 })
-
-
-
 
 export const getProductsThunk = () => {
     return dispatch => {
@@ -41,6 +42,7 @@ export const getProductsThunk = () => {
             .finally(() => dispatch((setIsLoading(false))))
     }
 }
+
 export const getProductsDetailThunk = id => {
     return dispatch => {
         dispatch(setIsLoading(true))
@@ -51,3 +53,22 @@ export const getProductsDetailThunk = id => {
     }
 }
 
+export const getCategoriesThunk = () => {
+    return dispatch => {
+        dispatch(setIsLoading(true))
+        axios.get(`https://ecommerce-exercise-backend.herokuapp.com/categories/`, getConfig())
+            .then(res => dispatch(setCategories(res.data)))
+            .catch(error => console.log(error.response))
+            .finally(() => dispatch((setIsLoading(false))))
+    }
+}
+
+export const filterCategorieThunk = id => {
+    return dispatch => {
+        dispatch(setIsLoading(true))
+        axios.get(`https://ecommerce-exercise-backend.herokuapp.com/products/?category=${id}`, getConfig())
+            .then(res => dispatch(setProductsList(res.data)))
+            .catch(error => console.log(error.response))
+            .finally(() => dispatch((setIsLoading(false))))
+    }
+}

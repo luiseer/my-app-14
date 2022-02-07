@@ -4,6 +4,7 @@ const INITIAL_STATE = {
 
     shopList: [],
     productDetail: {},
+    categories: [],
     isLoading: false
 
 }
@@ -16,7 +17,6 @@ const reducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 shopList: action.payload
             }
-
         case actions.setIsLoading:
             return {
                 ...state,
@@ -27,7 +27,11 @@ const reducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 productDetail: action.payload
             }
-        
+        case actions.setCategories:
+            return{
+                ...state,
+                categories: action.payload
+            }
         default:
             return state
     }
