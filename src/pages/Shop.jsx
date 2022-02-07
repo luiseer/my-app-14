@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
-import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { getProductsThunk } from '../redux/actions/main';
 
 const Shop = () => {
@@ -31,7 +30,12 @@ const Shop = () => {
             </header>
             {
                 productsList.map(product => (
-                    <p key={product.id}>{product.name}</p>
+                    
+                    <p key={product.id}>
+                        <Link to={`/shop/${product.id}`}>
+                            {product.name}
+                        </Link>
+                    </p>
                 ))
             }
 

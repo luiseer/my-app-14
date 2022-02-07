@@ -8,6 +8,7 @@ import { getConfig } from '../../utils'
 
 export const actions = {
     setProductsList: "SET_PRODUCTS_LIST",
+    setIsLoading: "SET_IS_LOADING"
 }
 
 export const setProductsList = products => ({
@@ -15,12 +16,19 @@ export const setProductsList = products => ({
   payload: products
 });
 
+export const setIsLoading = isLoading => ({
+    type: actions.setIsLoading,
+    payload: isLoading
+})
+
 
 export const getProductsThunk = () =>{
     return dispatch => {
+        dispatch(setIsLoading(true))
         axios.get('https://ecommerce-exercise-backend.herokuapp.com/products/', getConfig())
             .then(res => dispatch(setProductsList(res.data)))
             .catch(error => console.log(error.response))
+            .finally(() => dispatch((setIsLoading(false))))
     }
 }
 
