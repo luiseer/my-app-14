@@ -3,6 +3,7 @@ import { actions } from '../actions/main'
 const INITIAL_STATE = {
 
     shopList: [],
+    productDetail: {},
     isLoading: false
 
 }
@@ -20,6 +21,11 @@ const reducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 isLoading: action.payload
+            }
+        case actions.setProductDetail:
+            return {
+                ...state,
+                productDetail: action.payload
             }
         
         default:

@@ -8,13 +8,21 @@ import { getConfig } from '../../utils'
 
 export const actions = {
     setProductsList: "SET_PRODUCTS_LIST",
-    setIsLoading: "SET_IS_LOADING"
+    setProductDetail: "SET_PRODUCT_DETAIL",
+    setIsLoading: "SET_IS_LOADING",
 }
 
 export const setProductsList = products => ({
-  type: actions.setProductsList,
-  payload: products
+    type: actions.setProductsList,
+    payload: products
 });
+
+
+export const setProductDetail = products => ({
+    type: actions.setProductDetail,
+    payload: products
+});
+
 
 export const setIsLoading = isLoading => ({
     type: actions.setIsLoading,
@@ -22,11 +30,22 @@ export const setIsLoading = isLoading => ({
 })
 
 
-export const getProductsThunk = () =>{
+
+
+export const getProductsThunk = () => {
     return dispatch => {
         dispatch(setIsLoading(true))
         axios.get('https://ecommerce-exercise-backend.herokuapp.com/products/', getConfig())
             .then(res => dispatch(setProductsList(res.data)))
+            .catch(error => console.log(error.response))
+            .finally(() => dispatch((setIsLoading(false))))
+    }
+}
+export const getProductsDetailThunk = id => {
+    return dispatch => {
+        dispatch(setIsLoading(true))
+        axios.get(`https://ecommerce-exercise-backend.herokuapp.com/products/${id}/`, getConfig())
+            .then(res => dispatch(setProductDetail(res.data)))
             .catch(error => console.log(error.response))
             .finally(() => dispatch((setIsLoading(false))))
     }
