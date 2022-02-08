@@ -1,7 +1,7 @@
 // 1. Crear una nueva propiedad en el objeto action.
 // 2. crear el case en el reducer.
 // 3. crear la funcion que retorne la action.
-// 4. Ejecute el dispatch con la funcion creada anteriormente.
+// 4. Ejecute el dispatch con la funcion creada anteriormente o en el thunk.
 
 import axios from "axios"
 import { getConfig } from '../../utils'
@@ -10,7 +10,8 @@ export const actions = {
     setProductsList: "SET_PRODUCTS_LIST",
     setProductDetail: "SET_PRODUCT_DETAIL",
     setIsLoading: "SET_IS_LOADING",
-    setCategories: "SET_CATEGORIES"
+    setCategories: "SET_CATEGORIES",
+    setCart: "SET_CART"
 }
 
 export const setProductsList = products => ({
@@ -32,6 +33,12 @@ export const setIsLoading = isLoading => ({
     type: actions.setIsLoading,
     payload: isLoading
 })
+
+export const setCart = cart => ({
+    type: actions.setCart,
+    payload: cart
+})
+
 
 export const getProductsThunk = () => {
     return dispatch => {
@@ -78,6 +85,15 @@ export const filterProductsThunk = product => {
         dispatch(setIsLoading(true))
         axios.get(`https://ecommerce-exercise-backend.herokuapp.com/products/?name__icontains=${product}`, getConfig())
             .then(res => dispatch(setProductsList(res.data)))
+            .catch(error => console.log(error.response))
+            .finally(() => dispatch((setIsLoading(false))))
+    }
+}
+export const getCartThunk = product => {
+    return dispatch => {
+        dispatch(setIsLoading(true))
+        axios.get(`https://ecommerce-exercise-backend.herokuapp.com/cart/`, getConfig())
+            .then(res => dispatch(setCart(res.data)))
             .catch(error => console.log(error.response))
             .finally(() => dispatch((setIsLoading(false))))
     }

@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { getConfig } from '../utils';
 import { useDispatch, useSelector } from 'react-redux';
 import { filterCategoryThunk, getProductsDetailThunk } from '../redux/actions/main';
+import { useState } from 'react';
 
 
 const Products = () => {
@@ -12,6 +13,9 @@ const Products = () => {
     const dispatch = useDispatch()
     const productDetail = useSelector(state => state.productDetail)
     const productsList = useSelector(state => state.shopList)
+
+    const [quantity, setQuantity] = useState(0)
+
 
     console.log(productsList);
 
@@ -27,11 +31,40 @@ const Products = () => {
         }
     }, [dispatch, productDetail])
 
+    const addCart = () => {
+        const addCart = {
+            product: id,
+            quantity: quantity
+        }
+        console.log(addCart);
+    }
+
     return (
         <div>
-            <h1>Product Detail</h1>
-            <p>{productDetail.name}</p>
-            <p>{productDetail.category?.name}</p>
+            <div>
+                <h1>Product Detail</h1>
+                <p>{productDetail.name}</p>
+                <p>{productDetail.category?.name}</p>
+            </div>
+
+            <section className=''>
+                <h2>Buy</h2>
+                <div>
+                    <div>
+                        <button onClick={() => setQuantity(quantity - 1)}>Quit</button>
+                    </div>
+                    <div>
+                        <p>{quantity}</p>
+                    </div>
+                    <div>
+                        <button onClick={() => setQuantity(quantity + 1)}>Add</button>
+                    </div>
+                    <div>
+                        <button onClick={addCart}>Add to cart</button>
+                    </div>
+                </div>
+            </section>
+
             <section>
                 <h2 className='text-3xl text-center'>Related Products</h2>
                 {
@@ -45,6 +78,10 @@ const Products = () => {
                     ))
                 }
             </section>
+
+            <div>
+
+            </div>
 
         </div>
 

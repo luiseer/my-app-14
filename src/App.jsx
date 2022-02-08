@@ -8,8 +8,6 @@ import { LoadingScreen, MainLayout } from './components'
 
 
 
-
-
 function App() {
 
   const isLoading = useSelector(state => state.isLoading)
@@ -20,14 +18,10 @@ function App() {
         {
           isLoading && <LoadingScreen />
         }
-
         <Routes>
           <Route path="/login" element={<Login />} />
-
           <Route element={<ProtectedRoutes />}>
-
             <Route element={<MainLayout/>}>
-
               <Route path="/shop" element={<Shop />} />
               <Route path="/shop/:id" element={<Products />} />
               <Route path="/cart" element={<Cart />} />
