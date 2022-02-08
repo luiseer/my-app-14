@@ -7,18 +7,8 @@ import { filterCategoryThunk, filterProductsThunk, getCategoriesThunk, getProduc
 
 const Shop = () => {
 
-    const navigate = useNavigate()
-
-    const logOut = () => {
-        localStorage.setItem("token", "")
-        navigate("/login")
-    }
-    
     const [search, setSearch] = useState("")
-
-    
     const dispatch = useDispatch();
-
     const productsList = useSelector(state => state.shopList)
     const categories = useSelector(state => state.categories)
 
@@ -41,10 +31,10 @@ const Shop = () => {
         <div>
             <header>
                 <h1>Shop</h1>
-                <button className='bg-orange-100 rounded-md w-24 mt-2' onClick={logOut}>Log out</button>
+                
             </header>
 
-            <nav className='flex justify-around mb-5'>
+            <section>
                 {
                     categories.map(categorie => (
                         <button
@@ -54,7 +44,7 @@ const Shop = () => {
                         </button>
                     ))
                 }
-            </nav>
+            </section>
 
             <form onSubmit={filterProducts}>
                 <button>Search</button>
