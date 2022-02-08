@@ -112,3 +112,13 @@ export const addCartThunk = addCart => {
         .finally(() => dispatch((setIsLoading(false))))
     }
 }
+
+export const deleteItemThunk = id => {
+    return dispatch =>{
+        dispatch(setIsLoading(true))
+        axios.delete(`https://ecommerce-exercise-backend.herokuapp.com/cart/${id}/remove_item/`, getConfig())
+        .then(() => dispatch(getCartThunk()))
+        .catch(error => console.log(error.response))
+        .finally(() => dispatch((setIsLoading(false))))
+    }
+}

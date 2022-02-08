@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { getCartThunk } from '../redux/actions/main';
+import { deleteItemThunk, getCartThunk } from '../redux/actions/main';
 
 const Cart = () => {
 
@@ -13,7 +13,11 @@ const selectCart = useSelector(state => state.cart)
 
 useEffect(() => dispatch(getCartThunk()), [dispatch])
 
-console.log(selectCart.map(product => product.product));
+console.log(selectCart.map(product => product.id));
+
+const deleteItems = id => {
+  dispatch(deleteItemThunk(id))
+}
 
   return (
     <div>
@@ -21,11 +25,16 @@ console.log(selectCart.map(product => product.product));
         <main>
           {
             selectCart.map(cart => (
-              <p key={cart.product?.id}>
+              <section key={cart.id}>
                 <Link to={`/shop/${cart.product?.id}`}>
                   {cart.product?.name}
                 </Link>
-              </p>
+                <button
+                  onClick={() => deleteItems(cart.id)} 
+                  className='bg-black text-white ml-5 mt-2'
+                  >Delete
+                  </button>
+              </section>
             ))
           }
         </main>
