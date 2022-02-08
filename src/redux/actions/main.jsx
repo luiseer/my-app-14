@@ -89,6 +89,7 @@ export const filterProductsThunk = product => {
             .finally(() => dispatch((setIsLoading(false))))
     }
 }
+
 export const getCartThunk = product => {
     return dispatch => {
         dispatch(setIsLoading(true))
@@ -96,5 +97,18 @@ export const getCartThunk = product => {
             .then(res => dispatch(setCart(res.data)))
             .catch(error => console.log(error.response))
             .finally(() => dispatch((setIsLoading(false))))
+    }
+}
+
+export const addCartThunk = addCart => {
+    return dispatch => {
+        dispatch(setIsLoading(true))
+        axios.post(`https://ecommerce-exercise-backend.herokuapp.com/products/add_to_cart/`, addCart, getConfig())
+        .then(() => {
+            dispatch(getCartThunk())
+            alert('Agregado al carrito')
+        })
+        .catch(error => console.log(error.response))
+        .finally(() => dispatch((setIsLoading(false))))
     }
 }

@@ -3,7 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import { getConfig } from '../utils';
 import { useDispatch, useSelector } from 'react-redux';
-import { filterCategoryThunk, getProductsDetailThunk } from '../redux/actions/main';
+import { addCartThunk, filterCategoryThunk, getProductsDetailThunk } from '../redux/actions/main';
 import { useState } from 'react';
 
 
@@ -14,7 +14,7 @@ const Products = () => {
     const productDetail = useSelector(state => state.productDetail)
     const productsList = useSelector(state => state.shopList)
 
-    const [quantity, setQuantity] = useState(0)
+    const [quantity, setQuantity] = useState(1)
 
 
     console.log(productsList);
@@ -36,7 +36,7 @@ const Products = () => {
             product: id,
             quantity: quantity
         }
-        console.log(addCart);
+        dispatch(addCartThunk(addCart))
     }
 
     return (
