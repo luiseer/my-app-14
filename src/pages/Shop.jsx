@@ -12,8 +12,8 @@ const Shop = () => {
     const productsList = useSelector(state => state.shopList)
     const categories = useSelector(state => state.categories)
 
-    console.log(categories);
-    console.log(productsList);
+    console.log(categories)
+    console.log(productsList.map(product => product.images[0].url));
 
     const filterCategory = id => dispatch(filterCategoryThunk(id))
 
@@ -75,7 +75,8 @@ const Shop = () => {
                         <p key={product.id}>
                             <Link to={`/shop/${product.id}`}>
                                 <p>{product.name}</p>
-                                <img src="" alt="" />
+                                <img src={product.images[0].url} alt="" />
+                                <p>{product.price}</p>
                             </Link>
                         </p>
                     ))
