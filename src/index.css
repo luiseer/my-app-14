@@ -49,6 +49,18 @@
             opacity: 0;
           }
         }
+        .card {
+          background-color: theme('colors.rosa-principal');
+          border-radius: theme('borderRadius.lg');
+          padding: theme('spacing.6');
+          box-shadow: theme('boxShadow.xl');
+          height: 250px;
+          width: 400px;
+        }
+        .bg-all{
+          background-color: theme('colors.rosa-secundario');
+        }
+
 
   }
 

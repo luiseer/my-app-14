@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { filterCategoryThunk, filterProductsThunk, getCategoriesThunk, getProductsThunk } from '../redux/actions/main';
 
 
@@ -15,46 +15,58 @@ const Shop = () => {
     console.log(categories);
     console.log(productsList);
 
-    const filterCategory = id  => dispatch(filterCategoryThunk(id))
+    const filterCategory = id => dispatch(filterCategoryThunk(id))
 
     useEffect(() => {
         dispatch(getProductsThunk())
         dispatch(getCategoriesThunk())
     }, [dispatch])
 
-    const filterProducts = e =>{
+    const filterProducts = e => {
         e.preventDefault()
         dispatch(filterProductsThunk(search))
     }
 
     return (
         <div>
-            <header>
+            <div className='text-4xl text-center mt-2'>
                 <h1>Shop</h1>
-                
-            </header>
+            </div>
+            <div className='flex justify-end'>
+                <form onSubmit={filterProducts}>
+                    <input
+                        onChange={e => setSearch(e.target.value)}
+                        value={search}
+                        className='border border-black'
+                        type="text"
+                    />
+                    <button>
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                            class="icon icon-tabler icon-tabler-search"
+                            width="20" height="20" viewBox="0 0 24 24"
+                            stroke-width="1.5" stroke="#000000" fill="none"
+                            stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <circle cx="10" cy="10" r="7" />
+                            <line x1="21" y1="21" x2="15" y2="15" />
+                        </svg>
+                    </button>
+                </form>
+            </div>
 
-            <section>
+            <section className='grid'>
                 {
                     categories.map(categorie => (
                         <button
-                            onClick={() => filterCategory(categorie.id)} 
+                            onClick={() => filterCategory(categorie.id)}
                             key={categorie.id}>
-                                {categorie.name}
+                                <p>{categorie.name}</p>
                         </button>
                     ))
                 }
             </section>
 
-            <form onSubmit={filterProducts}>
-                <button>Search</button>
-                <input
-                    onChange={e => setSearch(e.target.value)}
-                    value={search} 
-                    className= 'border border-black' 
-                    type="text" 
-                />
-            </form>
 
             <main>
                 {
@@ -62,7 +74,8 @@ const Shop = () => {
 
                         <p key={product.id}>
                             <Link to={`/shop/${product.id}`}>
-                                {product.name}
+                                <p>{product.name}</p>
+                                <img src="" alt="" />
                             </Link>
                         </p>
                     ))

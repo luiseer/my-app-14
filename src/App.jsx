@@ -1,6 +1,6 @@
 import '../src/index.css'
 import { HashRouter, Routes, Route, Navigate } from 'react-router-dom'
-import { Cart, Login, Shop } from './pages'
+import { Cart, Login, Shop, UserForm } from './pages'
 import ProtectedRoutes from './components/ProtectedRoutes'
 import Products from './pages/Products'
 import { useSelector } from 'react-redux'
@@ -21,6 +21,7 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/" element={<Login />} />
+          <Route path="/newuser" element={<UserForm/>}/>
 
           <Route element={<ProtectedRoutes />}>
             <Route element={<MainLayout/>}>

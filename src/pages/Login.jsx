@@ -2,12 +2,14 @@ import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
+import { Link } from 'react-router-dom';
 
 const Login = () => {
 
     const { register, handleSubmit } = useForm();
     const [loginError, setLoginError] = useState("");
     const navigate = useNavigate();
+
 
     const submit = (data) => {
         axios
@@ -17,45 +19,53 @@ const Login = () => {
                 navigate('/shop')
             })
             .catch(() => setLoginError("Credenciales incorrectas"));
-            
+
     }
 
     return (
-        <div>
+        <div className='bg-all'>
+           
 
-            <div>
-                <h1 className='text-4xl'>Login</h1>
-            </div>
+            <div className='flex h-screen justify-center items-center'>
+                <form className='card' onSubmit={handleSubmit(submit)}>
+                    <div>
+                        <h1 className='text-4xl text-center mb-3'>Login</h1>
+                    </div>
+                    <div>
+                        <div>
+                            <label htmlFor="email" className='mr-8'>Email</label>
+                            <input
+                                className='border-2 rounded w-9/12 m-auto'
+                                {...register("email")}
+                                type="email"
+                                required
+                            />
+                        </div>
+                        <div className='mt-4'>
+                            <label htmlFor="password" className='mr-1'>Password</label>
+                            <input
+                                className='border-2 rounded w-9/12 m-auto'
+                                type="password"
+                                {...register("password")}
+                                required
+                            />
+                        </div>
+                        <div>
+                            <p className='text-white bg-red-700'>{loginError}</p>
+                        </div>
+                    </div>
+                    <div className='flex justify-evenly text-center mt-4'>
+                        <div className='bg-rosa-principal rounded-md w-28 h-8 mt-2'>
+                            <button className='mt-1'>Log In</button>
+                        </div>
+                        <div className='bg-rosa-principal rounded-md w-28 h-8 mt-3'>
+                            <Link className='mt-1' to={'/newuser'}>Add User</Link>
+                        </div>
+                    </div>
 
-            <div className='flex justify-center m-20'>
-
-                <form action="" onSubmit={handleSubmit(submit)}>
-                    <div className="input-container">
-                        <label htmlFor="email">Email</label>
-                        <input
-                            className='border-2 border-black ml-2'
-                            {...register("email")}
-                            type="email"
-                            required
-                        />
-                    </div>
-                    <div className="input-container">
-                        <label htmlFor="password">Password</label>
-                        <input
-                            className='border-2 border-black ml-2 mt-2'
-                            type="password"
-                            {...register("password")}
-                            required
-                        />
-                    </div>
-                    <div className='mt-2'>
-                        <p className='text-white bg-red-700'>{loginError}</p>
-                    </div>
-                    <div className='ml-20'>
-                         <button className='bg-orange-100 rounded-md w-24 mt-2'>Log In</button>
-                    </div>
-                   
                 </form>
+
+
             </div>
 
         </div>
