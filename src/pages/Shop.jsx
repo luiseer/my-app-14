@@ -28,9 +28,9 @@ const Shop = () => {
     }
 
     return (
-        <div>
+        <div className='bg-rosa-principal'>
             <div className='text-4xl text-center mt-2'>
-                <h1>Shop</h1>
+                <h1>lorenza</h1>
             </div>
             <div className='flex justify-end'>
                 <form onSubmit={filterProducts}>
@@ -55,33 +55,45 @@ const Shop = () => {
                 </form>
             </div>
 
-            <section className='grid'>
-                {
-                    categories.map(categorie => (
-                        <button
-                            onClick={() => filterCategory(categorie.id)}
-                            key={categorie.id}>
+
+
+            <div className='contenedor'>
+
+                <section className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4  mb-5 mt-5'>
+                    {
+                        categories.map(categorie => (
+                            <button
+                                className='border-black border-l-2'
+                                onClick={() => filterCategory(categorie.id)}
+                                key={categorie.id}>
                                 <p>{categorie.name}</p>
-                        </button>
-                    ))
-                }
-            </section>
+                            </button>
+                        ))
+                    }
+                </section>
 
 
-            <main>
-                {
-                    productsList.map(product => (
+                <main className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 gap-10'>
+                    {
+                        productsList.map(product => (
 
-                        <p key={product.id}>
-                            <Link to={`/shop/${product.id}`}>
-                                <p>{product.name}</p>
-                                <img src={product.images[0].url} alt="" />
-                                <p>{product.price}</p>
-                            </Link>
-                        </p>
-                    ))
-                }
-            </main>
+                            <div className='card-shop w-full h-full' key={product.id}>
+                                <Link to={`/shop/${product.id}`}>
+                                    <p>{product.name}</p>
+                                    <img className='rounded-sm' src={product.images[0].url} alt="" />
+                                    <p><span>Price </span>{product.price}</p>
+                                </Link>
+                            </div>
+                        ))
+                    }
+                </main>
+
+
+
+
+            </div>
+
+
 
 
         </div>

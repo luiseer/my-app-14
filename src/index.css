@@ -57,9 +57,28 @@
           height: 250px;
           width: 400px;
         }
+        .card-shop {
+          background-color: theme('colors.white');
+          border-radius: theme('borderRadius.lg');
+          padding: theme('spacing.6');
+          box-shadow: theme('boxShadow.xl');
+          height: 250px;
+          width: 400px;
+        }
+
         .bg-all{
           background-color: theme('colors.rosa-secundario');
         }
+
+        .contenedor {
+          max-width: 120rem;
+          width: 95%;
+          margin: 0 auto;
+      }
+
+      body{
+        background-color: theme('colors.rosa-principal')
+      }
 
 
   }
