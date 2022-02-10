@@ -42,7 +42,7 @@ const Shop = () => {
                     />
                     <button>
                         <svg xmlns="http://www.w3.org/2000/svg"
-                            class="icon icon-tabler icon-tabler-search"
+                            className="icon icon-tabler icon-tabler-search"
                             width="20" height="20" viewBox="0 0 24 24"
                             stroke-width="1.5" stroke="#000000" fill="none"
                             stroke-linecap="round"
@@ -59,7 +59,7 @@ const Shop = () => {
 
             <div className='contenedor'>
 
-                <section className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4  mb-5 mt-5'>
+                <section className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4  mb-5 mt-5 '>
                     {
                         categories.map(categorie => (
                             <button

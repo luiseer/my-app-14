@@ -17,7 +17,7 @@ const Products = () => {
     const [quantity, setQuantity] = useState(1)
 
 
-    console.log(productDetail.description);
+    // console.log(productDetail?.images[0]?.url);
     console.log(productsList);
 
 
@@ -44,7 +44,7 @@ const Products = () => {
 
             <div className='grid grid-cols-1 md:grid-cols-2 mb-5 contenedor'>
                 <div className='m-5 p-5 w-11/12 h-full'>
-                    <img src={productDetail.images[1].url} alt="" />
+                    {/* <img src={productDetail?.images[1]?.url} alt="images-1" /> */}
                     {/* <img src={productDetail.images[2].url} alt="" /> */}
                 </div>
                 <section className='mt-5 p-5'>
@@ -90,11 +90,11 @@ const Products = () => {
                             </button>
                         </div>
                     </div>
-                    <div className='border h-12 w-1/2 m-auto mt-5'>
-                        <div className='flex justify-center items-center mt-2'>
-                            <button onClick={addCart}>Add to cart <span>$ {productDetail.price}</span></button>
+                  
+                        <div className='flex justify-center items-center border h-12 w-1/2 m-auto mt-5 ease-in duration-150 hover:bg-rosa-secundario hover:text-white'>
+                            <button className=''  onClick={addCart}>Add to cart <span>$ {productDetail.price}</span></button>
                         </div>
-                    </div>
+                   
                     <div className='grid grid-cols-3 mt-5'>
                         <div>
                             <img className='img-detail' src="src/img/calidad.svg" alt="" />
