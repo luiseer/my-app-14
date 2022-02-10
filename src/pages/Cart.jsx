@@ -22,7 +22,7 @@ const deleteItems = id => {
   return (
     <div>
         <h1 className='text-4xl text-center mt-5'>Cart</h1>
-        <main className='grid grid-cols-5'>
+        <main className='grid grid-cols-5 gap-4 p-2'>
           {
             selectCart.map(cart => (
               <section  key={cart.id}>

@@ -9,6 +9,9 @@ const NavBar = () => {
     }
     return (
         <div>
+            <div className='flex justify-center'>
+                <img src="src/img/header.webp" alt="" />
+            </div>
             <nav className='flex justify-around mt-5 bg-rosa-principal'>
                 <Link to="/shop">
                     <svg xmlns="http://www.w3.org/2000/svg"
