@@ -13,7 +13,7 @@ const selectCart = useSelector(state => state.cart)
 
 useEffect(() => dispatch(getCartThunk()), [dispatch])
 
-console.log(selectCart.map(product => product.product.images[3].url));
+// console.log(selectCart.map(product => product.product.images?.[3].url));
 
 const deleteItems = id => {
   dispatch(deleteItemThunk(id))
@@ -29,7 +29,7 @@ const deleteItems = id => {
                 <Link to={`/shop/${cart.product?.id}`}>
                   <p>{cart.product?.name}</p>
                   <p>{cart.product.price}</p>
-                  <img src={cart.product.images[3].url} alt="" />
+                  <img src={cart.product.images?.[1].url} alt="" />
                 </Link>
                 <button
                   onClick={() => deleteItems(cart.id)} 

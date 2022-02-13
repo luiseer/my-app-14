@@ -44,7 +44,7 @@ const Products = () => {
 
             <div className='grid grid-cols-1 md:grid-cols-2 mb-5 contenedor'>
                 <div className='m-5 p-5 w-11/12 h-full'>
-                    {/* <img src={productDetail?.images[1]?.url} alt="images-1" /> */}
+                    <img src={productDetail.images?.[1].url} alt="images-1" />
                     {/* <img src={productDetail.images[2].url} alt="" /> */}
                 </div>
                 <section className='mt-5 p-5'>

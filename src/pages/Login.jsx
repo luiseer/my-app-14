@@ -25,7 +25,6 @@ const Login = () => {
     return (
         <div className='bg-all'>
            
-
             <div className='flex h-screen justify-center items-center'>
                 <form className='card' onSubmit={handleSubmit(submit)}>
                     <div>
