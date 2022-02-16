@@ -3,6 +3,18 @@
 @tailwind utilities;
 
 
+@layer base {
+  h1 {
+    @apply text-2xl;
+  }
+  h2 {
+    @apply text-xl;
+  }
+  h3 {
+    @apply text-lg;
+  }
+}
+
 @layer components {
 
     .overlay{
@@ -49,6 +61,21 @@
             opacity: 0;
           }
         }
+
+        
+          .btn-primary {
+            @apply 
+              py-2 px-4
+             bg-azul
+             text-black 
+             font-semibold 
+             rounded-lg shadow-md
+             hover:text-white
+             hover:bg-rosa-secundario
+            focus:outline-none focus:ring-2
+             focus:ring-blue-400 focus:ring-opacity-75;
+          }
+        
         .card {
           background-color: theme('colors.rosa-principal');
           border-radius: theme('borderRadius.lg');
@@ -56,6 +83,17 @@
           box-shadow: theme('boxShadow.xl');
           height: 250px;
           width: 400px;
+        }
+        .card-cart {
+          background-color: theme('colors.rosa-principal');
+          border-radius: theme('borderRadius.lg');
+          padding: theme('spacing.6');
+        }
+        .card-also {
+          background-color: theme('colors.white');
+          border-radius: theme('borderRadius.lg');
+          padding: theme('spacing.6');
+          box-shadow: theme('boxShadow.xl');
         }
         .card-shop {
           background-color: theme('colors.white');
@@ -71,8 +109,13 @@
         }
 
         .contenedor {
-          max-width: 120rem;
+          max-width: 100rem;
           width: 95%;
+          margin: 0 auto;
+      }
+        .contenedor-cart {
+          max-width: 85rem;
+          width: 80%;
           margin: 0 auto;
       }
       .img-detail{

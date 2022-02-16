@@ -106,7 +106,7 @@ export const addCartThunk = addCart => {
         axios.post(`https://ecommerce-exercise-backend.herokuapp.com/products/add_to_cart/`, addCart, getConfig())
         .then(() => {
             dispatch(getCartThunk())
-            alert('Agregado al carrito')
+            dispatch(setIsLoading(true))
         })
         .catch(error => console.log(error.response))
         .finally(() => dispatch((setIsLoading(false))))

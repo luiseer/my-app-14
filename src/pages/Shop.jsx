@@ -1,3 +1,5 @@
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -28,11 +30,9 @@ const Shop = () => {
     }
 
     return (
-        <div className='bg-rosa-principal'>
-            <div className='text-4xl text-center mt-2'>
-                <h1>lorenza</h1>
-            </div>
-            <div className='flex justify-end'>
+        <div className='bg-rosa-principal contenedor'>
+            <div className='flex justify-end m-5'>
+                <h3 className='mr-2'>Find Category</h3>
                 <form onSubmit={filterProducts}>
                     <input
                         onChange={e => setSearch(e.target.value)}
@@ -40,26 +40,12 @@ const Shop = () => {
                         className='border border-black'
                         type="text"
                     />
-                    <button>
-                        <svg xmlns="http://www.w3.org/2000/svg"
-                            className="icon icon-tabler icon-tabler-search"
-                            width="20" height="20" viewBox="0 0 24 24"
-                            stroke-width="1.5" stroke="#000000" fill="none"
-                            stroke-linecap="round"
-                            stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                            <circle cx="10" cy="10" r="7" />
-                            <line x1="21" y1="21" x2="15" y2="15" />
-                        </svg>
-                    </button>
+                    <button><FontAwesomeIcon icon={faMagnifyingGlass}/></button>
                 </form>
             </div>
 
-
-
-            <div className='contenedor'>
-
-                <section className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4  mb-5 mt-5 '>
+            <div>
+                <section className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4  mb-9 mt-9 '>
                     {
                         categories.map(categorie => (
                             <button
@@ -72,18 +58,19 @@ const Shop = () => {
                     }
                 </section>
 
+                    <h1  className='text-center text-4xl mb-10 mt-10'>Store</h1>
 
                 <main className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 gap-10'>
                     {
                         productsList.map(product => (
 
-                            <div className='card-shop w-full h-full' key={product.id}>
-                                <Link to={`/shop/${product.id}`}>
+                            <Link to={`/shop/${product.id}`}>
+                                <div  key={product.id}>
                                     <p>{product.name}</p>
                                     <img className='rounded-sm' src={product.images[0].url} alt="" />
                                     <p><span>Price </span>{product.price}</p>
-                                </Link>
-                            </div>
+                                </div>
+                            </Link>
                         ))
                     }
                 </main>

@@ -1,10 +1,10 @@
-import { useParams } from 'react-router-dom'
-import { useNavigate, Link } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { useEffect } from 'react';
-import { getConfig } from '../utils';
 import { useDispatch, useSelector } from 'react-redux';
 import { addCartThunk, filterCategoryThunk, getProductsDetailThunk } from '../redux/actions/main';
 import { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 
 
 const Products = () => {
@@ -18,7 +18,6 @@ const Products = () => {
 
 
     // console.log(productDetail?.images[0]?.url);
-    console.log(productsList);
 
 
     useEffect(() => {
@@ -31,6 +30,9 @@ const Products = () => {
         }
     }, [dispatch, productDetail])
 
+    if (quantity < 0 && quantity < 30) {
+        console.log('contidad minima 1 y cantidad maxima 30')
+    }
     const addCart = () => {
         const addCart = {
             product: id,
@@ -43,64 +45,39 @@ const Products = () => {
         <div>
 
             <div className='grid grid-cols-1 md:grid-cols-2 mb-5 contenedor'>
-                <div className='m-5 p-5 w-11/12 h-full'>
-                    <img src={productDetail.images?.[1].url} alt="images-1" />
-                    {/* <img src={productDetail.images[2].url} alt="" /> */}
+                <div className='m-5 p-5 w-11/12 h-9/12'>
+                    <img className='rounded-md' src={productDetail.images?.[1].url} alt="images-1" />
                 </div>
                 <section className='mt-5 p-5'>
                     <div className='mb-5'>
                         <p className='text-1xl mt-6'>{productDetail.name}</p>
                         <p className='text-1xl mt-4'> <span>$ </span>{productDetail.price}</p>
-                        <p className='mt-2'>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                            Amet quam, expedita eligendi impedit aliquid nihil, doloribus pariatur accusantium obcaecati eum sed quisquam 
+                        <p className='mt-2'>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            Amet quam, expedita eligendi impedit aliquid nihil, doloribus pariatur accusantium obcaecati eum sed quisquam
                             quos ipsum vel voluptatum officia facere eius reiciendis!</p>
                     </div>
                     <div className='flex justify-between border-2 w-1/5'>
                         <div>
-                            <button onClick={() => setQuantity(quantity - 1)}>
-                                <svg xmlns="http://www.w3.org/2000/svg"
-                                    className="icon icon-tabler icon-tabler-minus"
-                                    width="20"
-                                    height="20"
-                                    viewBox="0 0 24 24"
-                                    stroke-width="1.5"
-                                    stroke="#2c3e50" fill="none"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                    <line x1="5" y1="12" x2="19" y2="12" />
-                                </svg>
-                            </button>
+                            <button onClick={() => setQuantity(quantity - 1)}><FontAwesomeIcon icon={faMinus} /></button>
                         </div>
                         <div>
                             <p>{quantity}</p>
                         </div>
                         <div>
-                            <button onClick={() => setQuantity(quantity + 1)}>
-                                <svg xmlns="http://www.w3.org/2000/svg"
-                                    className="icon icon-tabler icon-tabler-plus"
-                                    width="20" height="20" viewBox="0 0 24 24"
-                                    stroke-width="1.5" stroke="#2c3e50" fill="none"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                    <line x1="12" y1="5" x2="12" y2="19" />
-                                    <line x1="5" y1="12" x2="19" y2="12" />
-                                </svg>
-                            </button>
+                            <button onClick={() => setQuantity(quantity + 1)}><FontAwesomeIcon icon={faPlus} /></button>
                         </div>
                     </div>
-                  
-                        <div className='flex justify-center items-center border h-12 w-1/2 m-auto mt-5 ease-in duration-150 hover:bg-rosa-secundario hover:text-white'>
-                            <button className=''  onClick={addCart}>Add to cart <span>$ {productDetail.price}</span></button>
-                        </div>
-                   
+
+                    <div className='flex justify-center items-center border h-12 w-1/2 m-auto mt-5 ease-in duration-150 hover:bg-rosa-secundario hover:text-white'>
+                        <button className='' onClick={addCart}>Add to cart <span>$ {productDetail.price}</span></button>
+                    </div>
+
                     <div className='grid grid-cols-3 mt-5'>
                         <div>
                             <img className='img-detail' src="src/img/calidad.svg" alt="" />
                             <p className='text-center'>quality</p>
                         </div>
-                        <div> 
+                        <div>
                             <img className='img-detail' src="src/img/envios.svg" alt="" />
                             <p className='text-center'>shipments</p>
                         </div>
@@ -109,6 +86,7 @@ const Products = () => {
                             <p className='text-center'>security</p>
                         </div>
                     </div>
+
                     <div className='mt-5'>
                         <h2>Description</h2>
                         <p>{productDetail.description}</p>
@@ -125,14 +103,20 @@ const Products = () => {
 
                             <div key={product.id}>
                                 <Link to={`/shop/${product.id}`}>
-                                    <p>{product.name}</p>
-                                    <img src={product.images[1].url} alt="" />
+                                    <div className='card-also text-center'>
+                                        <div className='text-1xl'>
+                                           <p>{product.name}</p> 
+                                        </div>
+                                        <div>
+                                           <img className='rounded-xl' src={product.images?.[2].url} alt="img-jew-people" />
+                                           <p> <span>$ </span>{product.price}</p>
+                                        </div>
+                                    </div>
                                 </Link>
                             </div>
                         ))
                     }
                 </div>
-
             </section>
 
             <div>
