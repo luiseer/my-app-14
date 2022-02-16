@@ -60,14 +60,14 @@ const Shop = () => {
 
                     <h1  className='text-center text-4xl mb-10 mt-10'>Store</h1>
 
-                <main className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 gap-10'>
+                <main className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 gap-10 card-also text-center'>
                     {
                         productsList.map(product => (
 
                             <Link to={`/shop/${product.id}`}>
                                 <div  key={product.id}>
                                     <p>{product.name}</p>
-                                    <img className='rounded-sm' src={product.images[0].url} alt="" />
+                                    <img className='rounded-2xl h-full' src={product.images[0].url} alt="" />
                                     <p><span>Price </span>{product.price}</p>
                                 </div>
                             </Link>

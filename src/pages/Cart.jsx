@@ -30,7 +30,7 @@ const Cart = () => {
             <section className='grid grid-cols-1 md:grid-cols-2 ' key={cart.id}>
               <div>
                 <Link to={`/shop/${cart.product?.id}`}>
-                  <img className='w-10/12 h-70' src={cart.product.images?.[1].url} alt="" />
+                  <img className='w-10/12 h-70' src={cart.product.images?.[1].url} alt="img-store" />
                 </Link>
               </div>
               <div>
