@@ -4,7 +4,9 @@
 // 4. Ejecute el dispatch con la funcion creada anteriormente o en el thunk.
 
 import axios from "axios"
+import Swal from "sweetalert2";
 import { getConfig } from '../../utils'
+
 
 export const actions = {
     setProductsList: "SET_PRODUCTS_LIST",
@@ -106,7 +108,7 @@ export const addCartThunk = addCart => {
         axios.post(`https://ecommerce-exercise-backend.herokuapp.com/products/add_to_cart/`, addCart, getConfig())
         .then(() => {
             dispatch(getCartThunk())
-            dispatch(setIsLoading(true))
+          
         })
         .catch(error => console.log(error.response))
         .finally(() => dispatch((setIsLoading(false))))

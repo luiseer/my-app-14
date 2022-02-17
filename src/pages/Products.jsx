@@ -68,8 +68,8 @@ const Products = () => {
                         </div>
                     </div>
 
-                    <div className='flex justify-center items-center border h-12 w-1/2 m-auto mt-5 ease-in duration-150 hover:bg-rosa-secundario hover:text-white'>
-                        <button className='' onClick={addCart}>Add to cart <span>$ {productDetail.price}</span></button>
+                    <div className='flex justify-center items-center h-12 w-1/2 m-auto mt-5'>
+                        <button className='btn-primary w-full' onClick={addCart}>Add to cart <span>$ {productDetail.price}</span></button>
                     </div>
 
                     <div className='grid grid-cols-3 mt-5'>
@@ -108,7 +108,7 @@ const Products = () => {
                                            <p>{product.name}</p> 
                                         </div>
                                         <div>
-                                           <img className='rounded-xl' src={product.images?.[2].url} alt="img-jew-people" />
+                                           <img className='rounded-xl' src={product.images?.[1].url} alt="img-jew-people" />
                                            <p> <span>$ </span>{product.price}</p>
                                         </div>
                                     </div>
